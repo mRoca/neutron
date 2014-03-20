@@ -1,0 +1,9 @@
+{
+    "name": "neutron/elasticsearch",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "elasticsearch/elasticsearch"  : "~1.0",
+        "fzaninotto/faker"             : "~1.0"
+    }
+}
