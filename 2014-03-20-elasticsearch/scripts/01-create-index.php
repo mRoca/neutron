@@ -21,6 +21,21 @@ $index = [
         'settings' => [
             'number_of_shards'   => 2,
             'number_of_replicas' => 0,
+            'analysis' => [
+                'analyzer' => [
+                    'french' => [
+                        'type'      => 'custom',
+                        'tokenizer' => 'letter',
+                        'filter'    => ["asciifolding", "lowercase", "french_stem", "stop_fr"]
+                    ]
+                ],
+                'filter' => [
+                    'stop_fr' => [
+                        'type' => 'stop',
+                        'stopwords' => ['l', 'm', 't', 'qu', 'n', 's', 'j', 'd'],
+                    ]
+                ],
+            ],
         ],
         'mappings' => [
             TYPE_RECORD => [
@@ -29,21 +44,6 @@ $index = [
                 ],
                 '_all' => [
                     'analyzer' => 'french',
-                ],
-                'analysis' => [
-                    'analyzer' => [
-                        'french' => [
-                            'type'      => 'custom',
-                            'tokenizer' => 'letter',
-                            'filter'    => ["asciifolding", "lowercase", "french_stem", "stop_fr"]
-                        ]
-                    ],
-                    'filter' => [
-                        'stop_fr' => [
-                            'type' => 'stop',
-                            'stopwords' => ['l', 'm', 't', 'qu', 'n', 's', 'j', 'd'],
-                        ]
-                    ],
                 ],
                 'properties' => [
                     'record_id' => [
